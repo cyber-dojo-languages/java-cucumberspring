@@ -1,0 +1,6 @@
+This Cucumber environment is bundled with:
+- Enough Spring to support DI in cucumber.xml
+  - you must explicitly declare beans in XML
+  - Do not use @Component, @Service or @Scope annotations
+- JMock2
+- Mockito

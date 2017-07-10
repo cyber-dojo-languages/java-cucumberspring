@@ -1,0 +1,18 @@
+
+{
+  "visible_filenames": [
+    "README",
+    "Hiker.feature",
+    "Hiker.java",
+    "HikerStepDef.java",
+    "RunCukesTest.java",
+    "cucumber.xml",
+    "cyber-dojo.sh"
+  ],
+
+  "filename_extension" : ".java",
+
+  "display_name": "Java, Cucumber-Spring",
+
+  "image_name": "cyberdojofoundation/java_cucumber_spring"
+}
