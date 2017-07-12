@@ -1,5 +1,5 @@
-FROM       cyberdojofoundation/java_cucumber_base
-MAINTAINER Jon Jagger <jon@jaggersoft.com>
+FROM  cyberdojofoundation/java_cucumber_base
+LABEL maintainer=jon@jaggersoft.com
 
 COPY /jars/* /cucumber/
 ENV CLASSPATH=/cucumber/
