@@ -1,5 +1,12 @@
 
 {
+  "red":
+    {
+      "filename":"Hiker.feature",
+      "from":"6 times 9",
+      "to":"6 times 99"
+    }
+  ,
   "green":
     {
       "filename":"Hiker.feature",
