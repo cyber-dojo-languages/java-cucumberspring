@@ -1,8 +1,8 @@
-
 {
   "display_name": "Java, Cucumber-Spring",
-
-  "visible_filenames": [
+  "image_name": "cyberdojofoundation/java_cucumber_spring",
+  "visible_filenames":
+  [
     "README",
     "Hiker.feature",
     "Hiker.java",
@@ -11,10 +11,7 @@
     "cucumber.xml",
     "cyber-dojo.sh"
   ],
-
-  "image_name": "cyberdojofoundation/java_cucumber_spring",
-
+  "filename_extension": [ ".java", ".feature" ],
   "max_seconds": 15,
-
-  "filename_extension": [ ".java", ".feature" ]
+  "tab_size": 4
 }
