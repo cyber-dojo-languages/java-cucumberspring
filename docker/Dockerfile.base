@@ -1,4 +1,4 @@
-FROM cyberdojofoundation/java_cucumber_base:09c59f1
+FROM cyberdojofoundation/java_cucumber_base:a141836
 LABEL maintainer=jon@jaggersoft.com
 
 COPY /jars/* /cucumber/
