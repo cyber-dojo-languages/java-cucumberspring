@@ -1,7 +1,27 @@
-FROM ghcr.io/cyber-dojo-languages/java_cucumber_base:b1149d4
+# JDK 26, directly. This image used to build on java_cucumber_base, which
+# existed to share a jar set with java-cucumberpico. The jars are now resolved
+# here in one Maven run, which is what keeps their versions consistent; with
+# that, the shared base held nothing this image did not immediately replace.
+#
+# The AOT caches recorded below need JDK 24 or newer for -XX:AOTCacheOutput,
+# which records in one step.
+FROM ghcr.io/cyber-dojo-languages/java:5c97081
 LABEL maintainer=jon@jaggersoft.com
 
-COPY /jars/* /cucumber/
 ENV CLASSPATH=/cucumber/
 
-COPY red_amber_green.rb /usr/local/bin
+# The jars are resolved from pom.xml at build time rather than committed here,
+# so the image tracks releases and this repo holds names instead of binaries.
+COPY pom.xml /tmp/
+COPY install_jars.sh /tmp/
+RUN bash /tmp/install_jars.sh /cucumber \
+ && rm -f /tmp/install_jars.sh
+
+# A kata's test run reads the two AOT caches this leaves in /aot, one for the
+# JVM that compiles and one for the JVM that runs the tests, instead of loading
+# those classes from the jars again on every [test] press. The script explains
+# which classes each holds and why there have to be two.
+COPY throwaway_kata /tmp/throwaway_kata
+COPY record_aot_caches.sh /tmp/
+RUN bash /tmp/record_aot_caches.sh /cucumber \
+ && rm -rf /tmp/record_aot_caches.sh /tmp/throwaway_kata

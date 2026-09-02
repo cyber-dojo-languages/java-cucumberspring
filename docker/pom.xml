@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The whole jar set for this image, not just the Spring part of it. This
+     image used to build on java_cucumber_base and add to the jars that came
+     with it; resolving the lot in one Maven run instead is what keeps the
+     versions consistent, since two runs weeks apart can disagree and leave two
+     copies of the same library on a kata's classpath.
+
+     Only the libraries a kata names directly are listed. Everything they drag
+     in (spring-core, spring-beans, gherkin and the rest) is resolved from here.
+
+     The versions below are a starting point, not the versions installed.
+     install_jars.sh moves each to its newest release before resolving. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.cyber-dojo</groupId>
+  <artifactId>java-cucumberspring-jars</artifactId>
+  <version>1</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>7.20.1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>7.20.1</version>
+    </dependency>
+    <!-- What distinguishes this image from java-cucumberpico: step definition
+         classes are wired together by the Spring context. -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-spring</artifactId>
+      <version>7.20.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>6.1.14</version>
+    </dependency>
+    <!-- Named rather than left to spring-test to bring. spring-test declares
+         the context and the bean factory optional, so resolving it alone gets
+         spring-core and nothing a kata can autowire with. This one pulls in
+         spring-beans, spring-aop and spring-expression behind it. -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>6.1.14</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+    </dependency>
+    <!-- Named rather than left to JUnit to supply. JUnit 4 brings only
+         hamcrest-core, and a kata reaching for a matcher beyond the core ones
+         would not find it. -->
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <version>3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <version>3.0</version>
+    </dependency>
+    <!-- Mocking libraries, so a kata can stand in for a collaborator in a step
+         definition without the image having to be rebuilt. -->
+    <dependency>
+      <groupId>org.jmock</groupId>
+      <artifactId>jmock</artifactId>
+      <version>2.13.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jmock</groupId>
+      <artifactId>jmock-junit4</artifactId>
+      <version>2.13.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.14.2</version>
+    </dependency>
+  </dependencies>
+
+</project>
