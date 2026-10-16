@@ -5,7 +5,7 @@
 #
 # The AOT caches recorded below need JDK 24 or newer for -XX:AOTCacheOutput,
 # which records in one step.
-FROM ghcr.io/cyber-dojo-languages/java:b2e8ddb
+FROM ghcr.io/cyber-dojo-languages/java:9db6557
 LABEL maintainer=jon@jaggersoft.com
 
 ENV CLASSPATH=/cucumber/
